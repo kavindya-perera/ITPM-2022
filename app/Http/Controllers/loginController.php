@@ -8,8 +8,10 @@ use App\Models\Employee;
 use \Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use DB;
-use Session;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use \Exception;
+use Illuminate\Support\Facades\Redirect;
 
 function test_input($data) {
     $data = trim($data);
@@ -35,7 +37,12 @@ class loginController extends Controller
             $password = test_input($data['password']); 
             $h_upass = sha1($password);
 
+
+
             $users = DB::select('SELECT * FROM employees WHERE EM_Email=? AND EM_Password=? AND EM_STATUS = 1 LIMIT 1',[$email,$h_upass]);
+
+            // var_dump($users);
+            // exit;
 
             if($users == TRUE){
                 foreach ($users as $user){ 

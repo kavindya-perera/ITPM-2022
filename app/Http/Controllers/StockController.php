@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Stock;
 use App\Models\stockManage;
+use App\Models\StockHistory;
 use \Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use DB;
-use Session;
-use Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use \Exception;
+use Illuminate\Support\Facades\Redirect;
 
 function test_input($data) {
     $data = trim($data);
@@ -207,11 +209,13 @@ class StockController extends Controller
 
 
     public function qtyInsert(Request $request){
+        date_default_timezone_set('Asia/Colombo');
         if(islog() != 1){
             return redirect('Logout')->with('failed',"operation failed");
         }else{
             $rules = [
                'item_id' => 'required|numeric',
+               'item_code' => 'required|string',
                'qty' => 'required|numeric|max:500',
 
             ];
@@ -228,6 +232,13 @@ class StockController extends Controller
                         $stockManage->SM_UPDATE_EMPLOYEE = Session::get('AdminEmNumber');
                         $stockManage->SM_ITEM_QTY = test_input($data['qty']);
                         if($stockManage->save()){
+                            $stockHistory = new StockHistory;
+                            $stockHistory->SH_DATE = date('Y-m-d');
+                            $stockHistory->SH_TIME = date("h:i a");
+                            $stockHistory->SH_ITEM_CODE = test_input($data['item_code']);
+                            $stockHistory->SH_DESCRIPTION = 'Updated Qty 0 to '.$data['qty'];
+                            $stockHistory->Employee_ID = Session::get('AdminEmNumber');
+                            $stockHistory->save();
                             return redirect('store')->with('status',"Qty has been successfully Updated.");
                         }else{
                             return Redirect::back()->with('failed',"operation failed");
@@ -246,13 +257,16 @@ class StockController extends Controller
 
 
     public function qtyupdate(Request $request) {
+        date_default_timezone_set('Asia/Colombo');
         if(islog() != 1){
             return redirect('Logout')->with('failed',"operation failed");
         }else{
       
                 $rules = [
                     'item_id' => 'required|numeric',
+                    'item_code' => 'required|string',
                     'qty' => 'required|numeric|max:500',
+                    'pastqty' => 'required|numeric|max:500',
                 ];
                 $validator = Validator::make($request->all(),$rules);
                 if ($validator->fails()) {
@@ -273,6 +287,14 @@ class StockController extends Controller
                             Session::get('AdminEmNumber'),
                             $item_id
                         ]);
+
+                        $stockHistory = new StockHistory;
+                        $stockHistory->SH_DATE = date('Y-m-d');
+                        $stockHistory->SH_TIME = date("h:i a");
+                        $stockHistory->SH_ITEM_CODE = $request->input('item_code');
+                        $stockHistory->SH_DESCRIPTION = 'Updated Qty '.$request->input('pastqty').' to '.$qty;
+                        $stockHistory->Employee_ID = Session::get('AdminEmNumber');
+                        $stockHistory->save();
                             
                         return redirect('store')->with('status',"Qty has been successfully Updated.");
                  
@@ -281,6 +303,68 @@ class StockController extends Controller
             
         }
     }
+
+
+        
+            public function stockHistory(){
+                if(islog() != 1){
+                    return redirect('Logout')->with('failed',"operation failed");
+                }else{
+                    $historyData = DB::select('SELECT * FROM stock_histories h,stocks s WHERE h.SH_ITEM_CODE=s.ITEM_CODE ORDER BY h.SH_DATE DESC LIMIT 100');
+                    return view('Stock/stockHistory',['historyData'=>$historyData]);
+                }
+            }
+
+            public function clearHistory(){
+                if(islog() != 1){
+                    return redirect('Logout')->with('failed',"operation failed");
+                }else{
+                    DB::table('stock_histories')->truncate();
+                    return redirect('stockHistory')->with('status',"history was cleared!");
+                }
+            }
+
+
+            public function stockHistoryFilter(Request $request){
+                if(islog() != 1){
+                    return redirect('Logout')->with('failed',"operation failed");
+                }else{
+
+                      
+                            $rules = [
+                                'Date_Since' => 'required|string',
+                                'Date_To' => 'required|string'
+                            ];
+                            $validator = Validator::make($request->all(),$rules);
+                            if ($validator->fails()) {
+                                return Redirect::back()->with('failed',"operation failed");
+                            }else{
+                                $data = $request->input();
+
+                                $Date_Since = date_create($data['Date_Since']);
+                                $Date_To = date_create($data['Date_To']);
+
+                                if($Date_Since > $Date_To){
+                                    return Redirect::back()->with('failed',"Invalid Date Range");
+                                }else{
+                                    
+                                    $stockHistory = DB::select('SELECT * FROM stock_histories h,stocks s
+                                                                WHERE  h.SH_ITEM_CODE=s.ITEM_CODE AND
+                                                                    (h.SH_DATE BETWEEN ? AND ?)
+                                                                    ORDER BY h.SH_DATE DESC'
+                                                            ,[$Date_Since,$Date_To]);
+                                    if($stockHistory == TRUE){
+                                        return view('Stock/stockHistory',['historyData'=>$stockHistory]);
+                                    }else{
+                                        return redirect('stockHistory')->with('failed',"No data!");
+                                    }
+
+                                }  
+                            }
+                        
+                    
+                }
+            }
 
 
 

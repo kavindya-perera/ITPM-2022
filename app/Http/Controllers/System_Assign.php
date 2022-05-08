@@ -9,9 +9,10 @@ use App\Models\VideoLesson;
 use \Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use DB;
-use Session;
-use Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use \Exception;
 
 function test_input($data) {
     $data = trim($data);
@@ -123,7 +124,6 @@ class System_Assign extends Controller
                     array_push($emSystem,$EmployeeSystem->ES_SYSTEM);
                 }
                 $systems = DB::select('SELECT * FROM systems');
-
                 return view('Admin/EditSystems', ['Employee'=>$Employee,'systems'=>$systems,'emSystem'=>$emSystem]);
             }
         } 

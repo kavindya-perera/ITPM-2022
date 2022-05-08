@@ -10,9 +10,10 @@ use App\Models\Student;
 use \Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use DB;
-use Session;
-use Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use \Exception;
+use Illuminate\Support\Facades\Redirect;
 
 function test_input($data) {
     $data = trim($data);
@@ -82,6 +83,12 @@ class Dashboard extends Controller
             $Pre2MonthPayment1 = DB::select('SELECT SUM(SP_AMOUNT) AS monthpayment FROM student_payments WHERE SP_DATE BETWEEN ? AND ?',[(date('Y')."-".$pre2."-1"),(date('Y')."-".$pre2."-31")]);
             $Pre2MonthPayment2 = DB::select('SELECT SUM(OP_AMOUNT) AS monthpayment FROM other_payments WHERE OP_DATE BETWEEN ? AND ?',[(date('Y')."-".$pre2."-1"),(date('Y')."-".$pre2."-31")]);
             $Pre2MonthExpenses = DB::select('SELECT SUM(E_AMOUNT) AS monthexpenses FROM expenses WHERE E_DATE BETWEEN ? AND ?',[(date('Y')."-".$pre2."-1"),(date('Y')."-".$pre2."-31")]);
+
+            $stok = DB::select('SELECT stock_manages.SM_ITEM_QTY,stocks.ITEM_CODE,stocks.ITEM_NAME FROM stocks,stock_manages WHERE stocks.ITEM_ID = stock_manages.SM_ITEM_ID ORDER BY stock_manages.SM_ITEM_QTY ASC LIMIT 5');
+
+            $STYearPayment = DB::select('SELECT SUM(SP_AMOUNT) AS yearpayment FROM student_payments WHERE SP_DATE BETWEEN ? AND ?',[(date('Y')."-1-1"), (date('Y')."-12-31")]);
+            $OtherYearPayment = DB::select('SELECT SUM(OP_AMOUNT) AS yearpayment FROM other_payments WHERE OP_DATE BETWEEN ? AND ?',[(date('Y')."-1-1"), (date('Y')."-12-31")]);
+            $YearExpenses = DB::select('SELECT SUM(E_AMOUNT) AS yearexpenses FROM expenses WHERE E_DATE BETWEEN ? AND ?',[(date('Y')."-1-1"), (date('Y')."-12-31")]);
       
             return view('/Admin/dashboard',[
                 'student'=>$student,
@@ -103,6 +110,13 @@ class Dashboard extends Controller
                 'Pre2MonthPayment1'=>$Pre2MonthPayment1,
                 'Pre2MonthPayment2'=>$Pre2MonthPayment2,
                 'Pre2MonthExpenses'=>$Pre2MonthExpenses,
+
+                'stok'=>$stok,
+
+
+                'STYearPayment'=>$STYearPayment,
+                'OtherYearPayment'=>$OtherYearPayment,
+                'YearExpenses'=>$YearExpenses
             ]);
         }else{
             return redirect('Logout')->with('failed',"operation failed");

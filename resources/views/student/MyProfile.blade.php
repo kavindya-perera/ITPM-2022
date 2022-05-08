@@ -12,7 +12,7 @@
 
         <!-- Loader -->
         <div id="global-loader">
-            <img src="/admin/assets/img/loader.svg" class="loader-img" alt="Loader">
+            <img src="{{ URL::to('/') }}/admin/assets/img/loader.svg" class="loader-img" alt="Loader">
         </div>
         <!-- /Loader -->
 
@@ -59,7 +59,7 @@
 									<div class="pl-0">
 										<div class="main-profile-overview ">
 											<div class="mb-2">
-												<center><img alt="" src="/admin/assets/img/faces/comonImage.jpg" class="rounded-circle"></center>
+												<center><img alt="" src="{{ URL::to('/') }}/admin/assets/img/faces/comonImage.jpg" class="rounded-circle"></center>
 											</div>
 											<div class="d-flex justify-content-center mg-b-20">
 												<div>
@@ -146,7 +146,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12">
-                                                <input type="submit" class="btn btn-primary mt-3 mb-0" value="CHANGE" name="save">
+                                                <input type="submit" class="btn btn-primary  mb-0" value="CHANGE" name="save">
                                             </div>
                                         </div>
                                     </form>
@@ -174,7 +174,7 @@
 
             
                         <!-- Footer opened -->
-                        <?php include('admin/inc/footer.php');?>
+                         @include('layout/footer')
 			<!-- Footer closed -->
         </div>
 		<!-- End Page -->
@@ -183,62 +183,62 @@
         <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
 
         <!-- JQuery min js -->
-        <script src="/admin/assets/plugins/jquery/jquery.min.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/jquery/jquery.min.js"></script>
 
         <!-- Bootstrap js -->
-        <script src="/admin/assets/plugins/bootstrap/js/popper.min.js"></script>
-        <script src="/admin/assets/plugins/bootstrap/js/bootstrap.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/bootstrap/js/popper.min.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/bootstrap/js/bootstrap.js"></script>
 
         <!-- Ionicons js -->
-        <script src="/admin/assets/plugins/ionicons/ionicons.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/ionicons/ionicons.js"></script>
 
         <!-- Moment js -->
-        <script src="/admin/assets/plugins/moment/moment.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/moment/moment.js"></script>
 
         <!-- P-scroll js -->
-        <script src="/admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-        <script src="/admin/assets/plugins/perfect-scrollbar/p-scroll.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/perfect-scrollbar/p-scroll.js"></script>
 
         <!-- Sticky js -->
-        <script src="/admin/assets/js/sticky.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/js/sticky.js"></script>
 
         <!-- eva-icons js -->
-        <script src="/admin/assets/js/eva-icons.min.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/js/eva-icons.min.js"></script>
 
         <!-- Rating js-->
-        <script src="/admin/assets/plugins/rating/jquery.rating-stars.js"></script>
-        <script src="/admin/assets/plugins/rating/jquery.barrating.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/rating/jquery.rating-stars.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/rating/jquery.barrating.js"></script>
 
         <!-- Sidebar js -->
-        <script src="/admin/assets/plugins/side-menu/sidemenu.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/side-menu/sidemenu.js"></script>
 
         <!-- Right-sidebar js -->
-        <script src="/admin/assets/plugins/sidebar/sidebar.js"></script>
-        <script src="/admin/assets/plugins/sidebar/sidebar-custom.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/sidebar/sidebar.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/sidebar/sidebar-custom.js"></script>
 
         
 		<!--Internal  Datepicker js -->
-		<script src="/admin/assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script>
+		<script src="{{ URL::to('/') }}/admin/assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script>
 
 		<!-- Internal Select2 js-->
-		<script src="/admin/assets/plugins/select2/js/select2.min.js"></script>
+		<script src="{{ URL::to('/') }}/admin/assets/plugins/select2/js/select2.min.js"></script>
 
 		<!--Internal  Clipboard js-->
-		<script src="/admin/assets/plugins/clipboard/clipboard.min.js"></script>
-		<script src="/admin/assets/plugins/clipboard/clipboard.js"></script>
+		<script src="{{ URL::to('/') }}/admin/assets/plugins/clipboard/clipboard.min.js"></script>
+		<script src="{{ URL::to('/') }}/admin/assets/plugins/clipboard/clipboard.js"></script>
 
 		<!-- Internal Prism js-->
-		<script src="/admin/assets/plugins/prism/prism.js"></script>
+		<script src="{{ URL::to('/') }}/admin/assets/plugins/prism/prism.js"></script>
 
 	
         <!-- Horizontalmenu js-->
-        <script src="/admin/assets/plugins/horizontal-menu/horizontal-menu-2/horizontal-menu.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/horizontal-menu/horizontal-menu-2/horizontal-menu.js"></script>
 
         <!-- custom js -->
-        <script src="/admin/assets/js/custom.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/js/custom.js"></script>
 
         <!-- Switcher js -->
-	<script src="/admin/assets/switcher/js/switcher.js"></script>
+	<script src="{{ URL::to('/') }}/admin/assets/switcher/js/switcher.js"></script>
     </body>
 
 

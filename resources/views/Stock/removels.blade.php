@@ -1,12 +1,12 @@
-<?php include('admin/inc/isloginAdmin.php');?>
+@include('layout/isloginAdmin')
 <!doctype html>
 <html lang="en" dir="ltr">
 	
 
     <head>
-        <?php include('admin/inc/head.php');?>
+        @include('layout/head')
         <!-- Internal Select2 css -->
-        <link href="/admin/assets/plugins/select2/css/select2.min.css" rel="stylesheet">
+        <link href="{{ URL::to('/') }}/admin/assets/plugins/select2/css/select2.min.css" rel="stylesheet">
 	</head>
 
     <body class="main-body app sidebar-mini">
@@ -14,13 +14,13 @@
 
         <!-- Loader -->
         <div id="global-loader">
-            <img src="/admin/assets/img/loader.svg" class="loader-img" alt="Loader">
+            <img src="{{ URL::to('/') }}/admin/assets/img/loader.svg" class="loader-img" alt="Loader">
         </div>
         <!-- /Loader -->
 
         <!-- Page -->
         <div class="page">
-            <?php include('admin/inc/header.php');?>
+            @include('layout/header')
 
 				<!-- /main-header -->
 
@@ -36,7 +36,7 @@
 						<div class="my-auto">
 							<div class="d-flex">
                                 <span class="text-muted mt-1 tx-13 ml-2 mb-0">STORK MANAGEMENT / &nbsp;</span>
-                                <h4 class="content-title mb-0 my-auto"> Removels</h4>
+                                <h4 class="content-title mb-0 my-auto"> Removal</h4>
 							</div>
 						</div>
 						<div class="d-flex my-xl-auto right-content">
@@ -209,7 +209,7 @@
 
             
                         <!-- Footer opened -->
-                        <?php include('admin/inc/footer.php');?>
+                         @include('layout/footer')
 			<!-- Footer closed -->
         </div>
 		<!-- End Page -->
@@ -218,76 +218,76 @@
         <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
 
     <!-- JQuery min js -->
-    <script src="/admin//assets/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap js -->
-    <script src="/admin//assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="/admin//assets/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Ionicons js -->
-    <script src="/admin//assets/plugins/ionicons/ionicons.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/ionicons/ionicons.js"></script>
 
     <!-- Moment js -->
-    <script src="/admin//assets/plugins/moment/moment.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/moment/moment.js"></script>
 
     <!-- P-scroll js -->
-    <script src="/admin//assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="/admin//assets/plugins/perfect-scrollbar/p-scroll.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/perfect-scrollbar/p-scroll.js"></script>
 
     <!-- Sticky js -->
-    <script src="/admin//assets/js/sticky.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/js/sticky.js"></script>
 
     <!-- eva-icons js -->
-    <script src="/admin//assets/js/eva-icons.min.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/js/eva-icons.min.js"></script>
 
     <!-- Rating js-->
-    <script src="/admin//assets/plugins/rating/jquery.rating-stars.js"></script>
-    <script src="/admin//assets/plugins/rating/jquery.barrating.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/rating/jquery.rating-stars.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/rating/jquery.barrating.js"></script>
 
     <!-- Sidebar js -->
-    <script src="/admin//assets/plugins/side-menu/sidemenu.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/side-menu/sidemenu.js"></script>
 
     <!-- Right-sidebar js -->
-    <script src="/admin//assets/plugins/sidebar/sidebar.js"></script>
-    <script src="/admin//assets/plugins/sidebar/sidebar-custom.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/sidebar/sidebar.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/sidebar/sidebar-custom.js"></script>
 
 
     <!--Internal  Datepicker js -->
-    <script src="/admin//assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script>
 
     <!--Internal  jquery.maskedinput js -->
-    <script src="/admin//assets/plugins/jquery.maskedinput/jquery.maskedinput.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/jquery.maskedinput/jquery.maskedinput.js"></script>
 
     <!--Internal  spectrum-colorpicker js -->
-    <script src="/admin//assets/plugins/date-picker/spectrum.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/date-picker/spectrum.js"></script>
 
     <!-- Internal Select2.min js -->
-    <script src="/admin//assets/plugins/select2/js/select2.min.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/select2/js/select2.min.js"></script>
 
     <!--Internal Ion.rangeSlider.min js -->
-    <script src="/admin//assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
 
     <!--Internal  jquery-simple-datetimepicker js -->
-    <script src="/admin//assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js"></script>
 
     <!-- Ionicons js -->
-    <script src="/admin//assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
 
     <!--Internal  pickerjs js -->
-    <script src="/admin//assets/plugins/pickerjs/picker.min.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/pickerjs/picker.min.js"></script>
 
     <!-- Internal form-elements js -->
-    <script src="/admin//assets/js/form-elements.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/js/form-elements.js"></script>
 
 
     <!-- Horizontalmenu js-->
-    <script src="/admin//assets/plugins/horizontal-menu/horizontal-menu-2/horizontal-menu.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/plugins/horizontal-menu/horizontal-menu-2/horizontal-menu.js"></script>
 
     <!-- custom js -->
-    <script src="/admin//assets/js/custom.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/js/custom.js"></script>
 
     <!-- Switcher js -->
-    <script src="/admin//assets/switcher/js/switcher.js"></script>
+    <script src="{{ URL::to('/') }}/admin//assets/switcher/js/switcher.js"></script>
 
     
     </body>

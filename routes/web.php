@@ -203,6 +203,9 @@ Route::get('/AD_Dashboard','App\Http\Controllers\Dashboard@index');
     Route::get('/store','App\Http\Controllers\StockController@storeView');
     Route::post('/qtyinsert','App\Http\Controllers\StockController@qtyInsert');
     Route::post('/qtyupdate','App\Http\Controllers\StockController@qtyUpdate');
+    Route::get('/stockHistory','App\Http\Controllers\StockController@stockHistory');
+    Route::get('/clearHistory','App\Http\Controllers\StockController@clearHistory');
+    Route::post('/stockHistoryFilter','App\Http\Controllers\StockController@stockHistoryFilter');
 
     Route::get('/removels','App\Http\Controllers\StockMainController@index');
     Route::get('/removelList','App\Http\Controllers\StockMainController@removelList');
@@ -223,3 +226,9 @@ Route::post('/CheckLogin','App\Http\Controllers\loginController@check');
 Route::get('/Logout','App\Http\Controllers\loginController@Logout');
 Route::post('/CheckLoginStudent','App\Http\Controllers\loginController@STcheck');
 Route::get('/LogoutST','App\Http\Controllers\loginController@LogoutST');
+
+
+//login
+Route::get('/a', function () {
+    return view('loginShow'); 
+});

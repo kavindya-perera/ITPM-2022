@@ -11,9 +11,12 @@ use App\Models\StorkOutJobs;
 use \Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use DB;
-use Session;
-use Redirect;
+use App\Models\StockHistory;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use \Exception;
+
 
 function test_input($data) {
     $data = trim($data);
@@ -118,6 +121,7 @@ class StockMainController extends Controller
 
 
     public function ActionStokOut(Request $request){
+        date_default_timezone_set('Asia/Colombo');
         if(islog() != 1){
             return redirect('Logout')->with('failed',"operation failed");
         }else{
@@ -173,12 +177,21 @@ class StockMainController extends Controller
                                 $StorkOutJobItems->JOI_QTY = $Itemqtys[$index];
                                 $StorkOutJobItems->save();
 
+
                                 DB::update('UPDATE stock_manages SET 
                                     SM_ITEM_QTY=?
                                 WHERE SM_ID  = ?',[
                                     $Item_QTY - $Itemqtys[$index],
                                     $SM_ID
                                 ]);
+
+                                $stockHistory = new StockHistory;
+                                $stockHistory->SH_DATE = date('Y-m-d');
+                                $stockHistory->SH_TIME = date("h:i a");
+                                $stockHistory->SH_ITEM_CODE = $itemcode;
+                                $stockHistory->SH_DESCRIPTION = $Itemqtys[$index].' Out from the stock.';
+                                $stockHistory->Employee_ID = Session::get('AdminEmNumber');
+                                $stockHistory->save();
                                 
                             }
                             DB::delete('DELETE FROM carts WHERE C_OWNER = ?',[Session::get('AdminEmNumber')]);
@@ -256,16 +269,26 @@ class StockMainController extends Controller
                 $itemID = array();
                 $itemQTY = array();
                 $itemRealQTY = array();
+                $itemCode = array();
            
                 $removel = DB::select('SELECT * FROM stork_out_job_items,stocks,stock_manages  WHERE stork_out_job_items.JOI_ITEM_CODE = stocks.ITEM_CODE AND stock_manages.SM_ITEM_ID = stocks.ITEM_ID AND  stork_out_job_items.JOI_JOB_ID = ? ',[$id]);
                 foreach($removel as $removel){
                     array_push($itemID,$removel->ITEM_ID);
+                    array_push($itemCode,$removel->ITEM_CODE);
                     array_push($itemQTY,$removel->JOI_QTY);
                     array_push($itemRealQTY,$removel->SM_ITEM_QTY);
                 }
            
-
                 foreach($itemID as $index=>$val){
+
+                    $stockHistory = new StockHistory;
+                    $stockHistory->SH_DATE = date('Y-m-d');
+                    $stockHistory->SH_TIME = date("h:i a");
+                    $stockHistory->SH_ITEM_CODE = $itemCode[$index];
+                    $stockHistory->SH_DESCRIPTION = 'Delete Removal. Updated qty '.$itemRealQTY[$index].' to '.$itemQTY[$index];
+                    $stockHistory->Employee_ID = Session::get('AdminEmNumber');
+                    $stockHistory->save();
+
                     DB::update('UPDATE stock_manages SET 
                         SM_ITEM_QTY=?
                     WHERE SM_ITEM_ID  = ?',[
@@ -277,7 +300,7 @@ class StockMainController extends Controller
                 DB::delete('DELETE FROM stork_out_jobs WHERE JO_ID = ?',[$id]);
                 DB::delete('DELETE FROM stork_out_job_items WHERE JOI_JOB_ID = ?',[$id]);
 
-                return redirect('removels')->with('status',"Item removed!");
+                return redirect('removelList')->with('status',"Item removed!");
             }
         }
     }

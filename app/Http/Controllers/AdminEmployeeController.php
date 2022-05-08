@@ -7,8 +7,9 @@ use App\Models\Employee;
 use \Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use DB;
-use Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use \Exception;
 
 function test_input($data) {
     $data = trim($data);

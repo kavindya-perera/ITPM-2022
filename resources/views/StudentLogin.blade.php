@@ -16,14 +16,14 @@
 		<title>WITC | Login</title>
 
 		<!-- Favicon -->
-		<link rel="icon" href="/admin/assets/img/brand/favicon.png" type="image/x-icon"/>
+		<link rel="icon" href="{{ URL::to('/') }}/admin/assets/img/brand/favicon.png" type="image/x-icon"/>
 
 		<!-- Bootstrap css-->
-		<link href="/admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+		<link href="{{ URL::to('/') }}/admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
 
 		<!-- Style css -->
-		<link href="/admin/assets/css/style.css" rel="stylesheet">
+		<link href="{{ URL::to('/') }}/admin/assets/css/style.css" rel="stylesheet">
 
     </head>
 
@@ -32,7 +32,7 @@
 
 		<!-- Loader -->
 		<div id="global-loader">
-			<img src="/admin/assets/img/loader.svg" class="loader-img" alt="Loader">
+			<img src="{{ URL::to('/') }}/admin/assets/img/loader.svg" class="loader-img" alt="Loader">
 		</div>
 		<!-- /Loader -->
 
@@ -47,7 +47,7 @@
 						<div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primery-transparent">
 							<div class="row wd-100p mx-auto text-center">
 								<div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-									<img src="/admin/assets/img/loginLogo.png" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
+									<img src="{{ URL::to('/') }}/admin/assets/img/loginLogo.png" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
 								</div>
 							</div>
 						</div>
@@ -59,7 +59,7 @@
 									<div class="row">
 										<div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
 											<div class="card-sigin">
-												<div class="mb-5 d-flex"> <a href="Home"><img src="/admin/assets/img/brand/logo.png" class="sign-favicon ht-40" alt="logo"></a></div>
+												<div class="mb-5 d-flex"> <a href="Home"><img src="{{ URL::to('/') }}/admin/assets/img/brand/logo.png" class="sign-favicon ht-40" alt="logo"></a></div>
 												<div class="card-sigin">
 													<div class="main-signup-header">
 
@@ -108,14 +108,14 @@
 
 	
         		<!-- JQuery min js -->
-		<script src="/admin/assets/plugins/jquery/jquery.min.js"></script>
+		<script src="{{ URL::to('/') }}/admin/assets/plugins/jquery/jquery.min.js"></script>
 
 		<!-- Bootstrap js -->
-        <script src="/admin/assets/plugins/bootstrap/js/popper.min.js"></script>
-        <script src="/admin/assets/plugins/bootstrap/js/bootstrap.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/bootstrap/js/popper.min.js"></script>
+        <script src="{{ URL::to('/') }}/admin/assets/plugins/bootstrap/js/bootstrap.js"></script>
 
 		<!-- custom js -->
-		<script src="/admin/assets/js/custom.js"></script>
+		<script src="{{ URL::to('/') }}/admin/assets/js/custom.js"></script>
 
 		<!-- Switcher js -->
     </body>

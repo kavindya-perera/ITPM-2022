@@ -9,9 +9,10 @@ use \Illuminate\Http\Response;
 use App\Models\LiveClass;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use DB;
-use Session;
-use Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use \Exception;
+use Illuminate\Support\Facades\Redirect;
 
 function test_input($data) {
     $data = trim($data);

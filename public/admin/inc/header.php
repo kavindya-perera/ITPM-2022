@@ -90,6 +90,9 @@
 								<a class="side-menu__item" href="/store"><i class="fa fa-plus-square  mr-2" aria-hidden="true"></i><span class="side-menu__label">Store Items </span></a>
 							</li>
 							<li class="slide">
+								<a class="side-menu__item" href="/stockHistory"><i class="fa fa-list  mr-2" aria-hidden="true"></i><span class="side-menu__label">Stock History</span></a>
+							</li>
+							<li class="slide">
 								<a class="side-menu__item" data-toggle="slide" href="#"><i class="fa fa-square-o  mr-2" aria-hidden="true"></i><span class="side-menu__label">Manage Items</span><i class="angle fe fe-chevron-down"></i></a>
 								<ul class="slide-menu">
 									<li><a class="slide-item" href="/AddNewItem">New Item</a></li>
